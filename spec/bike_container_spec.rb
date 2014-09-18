@@ -7,6 +7,10 @@ describe BikeContainer do
 	let (:station) { double :station }
 	let (:holder) { BikeContainer.new }
 
+	def fill_holder
+		20.times { holder.dock(bike) }
+	end
+
 	it "should dock available bikes" do 
 		holder.dock(bike)
 		expect(holder.bikes).to eq [bike]
@@ -35,24 +39,42 @@ describe BikeContainer do
 	end
 
 	it "should know when it's full" do 
+		expect(holder).to_not be_full 
+		fill_holder
+		expect(holder).to be_full
 	end
 
 	it "should not dock bikes when it's full" do 
+		fill_holder
+		expect(holder).to be_full
+		expect{ holder.dock(bike)}.to raise_error(RuntimeError)
 	end
 
 	it "should know when it's empty" do 
+		expect(holder.bikes).to eq []
+		expect(holder).to be_empty
 	end
 
 	it "should not release bikes when it's empty" do 
+		expect(holder.bike_count).to eq 0
+		expect(holder).to be_empty
+		expect{ holder.release(bike)}.to raise_error(RuntimeError)
 	end
 
 	it "should know what bikes it contains" do
+		holder.dock(bike)
+		holder.dock(broken_bike)
+		expect(holder.bike_count).to eq 2 # Is there a way to concatenate these two arrays to show both working and broken bikes?
 	end
 
-	it "should show available bikes" do 
+	it "should show available bikes" do
+		holder.dock(bike)
+		expect(holder.bikes).to eq [bike] 
 	end
 
 	it "should show broken bikes" do 
+		holder.dock(broken_bike)
+		expect(holder.bikes).to eq [broken_bike]
 	end
 
 
