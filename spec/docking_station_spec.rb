@@ -4,7 +4,8 @@ require './lib/spec_helper.rb'
 describe DockingStation do 
 
 	let (:bike) { double :bike }
-	let (:station) { DockingStation.new }
+	let (:broken_bike) { double :broken_bike }
+	let (:station) { DockingStation.new}
 
 	it "should dock bikes" do 
 		# expect{ station.dock(:bike)}.to change{station.bikes}.to eq ([:bike])
@@ -17,6 +18,5 @@ describe DockingStation do
 		station.release(bike)
 		expect(station.bikes).to eq []
 	end 
-
 
 end

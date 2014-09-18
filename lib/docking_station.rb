@@ -1,15 +1,10 @@
-class DockingStation
+require 'bike_container.rb'
 
-	def bikes
-		@bikes ||= []
+class DockingStation < BikeContainer
+
+	def initialize
+		@capacity = 20    # Is this a legal way to initialize the capacity?
 	end
 
-	def dock(bike)
-		bikes << bike 
-	end
-
-	def release(bike)
-		bikes.pop
-	end
 
 end

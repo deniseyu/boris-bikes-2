@@ -1,10 +1,8 @@
-class Garage
+require_relative 'bike_container.rb'
+
+class Garage < BikeContainer
 
 	attr_reader :bikes
-
-	# def bikes
-	# 	@bikes
-	# end
 
 	def initialize
 		@bikes = []
