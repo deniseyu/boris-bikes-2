@@ -14,11 +14,5 @@ describe Bike do
 		bike.fix!
 	end
 
-	it "can run into a tree" do 
-		bike = Bike.new
-		tree = double :tree
-		expect(bike).to receive(:collide_into).and_return(tree)
-		bike.collide_into(tree)
-	end
 
 end

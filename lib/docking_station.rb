@@ -8,4 +8,8 @@ class DockingStation
 		bikes << bike 
 	end
 
+	def release(bike)
+		bikes.pop
+	end
+
 end

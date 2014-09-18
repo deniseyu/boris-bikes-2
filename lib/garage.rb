@@ -11,8 +11,8 @@ class Garage
 	end
 
 	def dock(bike)
-		@bikes << bike 
 		bike.fix!
+		@bikes << bike 
 	end
 
 	def release(bike)

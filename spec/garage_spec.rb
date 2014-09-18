@@ -18,8 +18,7 @@ let (:garage) { Garage.new }
 	it "can release a fixed bike" do 
 		garage.dock(bike)
 		garage.release(bike)
-		expect(garage.bikes).to be []
+		expect(garage.bikes).to eq []
 	end
 
 end
-
