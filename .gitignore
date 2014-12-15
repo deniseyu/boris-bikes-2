@@ -1,1 +1,2 @@
-./lib/spec_helper.rb
+./lib/spec_helper
+./lib/runner

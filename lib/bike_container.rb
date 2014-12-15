@@ -1,6 +1,6 @@
-class BikeContainer 
+module BikeContainer
 
-	DEFAULT_CAPACITY = 20 
+	DEFAULT_CAPACITY = 20
 
 	attr_accessor :capacity
 
@@ -10,8 +10,8 @@ class BikeContainer
 
 	def dock(bike)
 		raise "No more room for bikes" if full?
-		bikes << bike 
-	end 
+		bikes << bike
+	end
 
 	def capacity
 		@capacity ||= 20
@@ -22,18 +22,16 @@ class BikeContainer
 	end
 
 	def empty?
-		bike_count == 0 
+		bike_count == 0
 	end
 
 	def bike_count
-		bikes.count 
-	end 
+		bikes.count
+	end
 
 	def release(bike)
 		raise "No bikes here" if empty?
 		bikes.pop
-	end	
-
-
+	end
 
 end

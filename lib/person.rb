@@ -1,24 +1,27 @@
 class Person
 
-	def has_bike?
-		@bikes != nil 
+	attr_accessor :has_bike
+
+	def initialize
+		@has_bike = false
 	end
 
-	def rent(bike)
-		if bike.broken?
-			raise "This bike is broken!"
+	def rent(bike, station)
+		if station.available_bikes == []
+			raise "No working bikes available!"
 		else
-			@bikes << station.release(bike)
+			@has_bike = true
 		end
 	end
 
-	def return(bike)
-		station.bikes << @bikes
-		@bikes = nil
-	end 
+	def return(bike, station)
+		raise "No bike to return" if @has_bike == false
+		station.bikes << bike
+		@has_bike = false
+	end
 
 	def crash(bike)
 		bike.break!
 	end
 
-end 
+end

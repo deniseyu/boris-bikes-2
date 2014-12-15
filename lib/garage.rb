@@ -1,6 +1,8 @@
 require_relative 'bike_container.rb'
 
-class Garage < BikeContainer
+class Garage
+
+	include BikeContainer
 
 	attr_reader :bikes
 
@@ -10,11 +12,11 @@ class Garage < BikeContainer
 
 	def dock(bike)
 		bike.fix!
-		@bikes << bike 
+		@bikes << bike
 	end
 
 	def release(bike)
 		@bikes.pop
 	end
 
-end 
+end

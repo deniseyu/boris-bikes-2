@@ -1,21 +1,26 @@
 require './lib/garage'
 
-describe Garage do 
+describe Garage do
 
-let (:bike) { double :bike, :fix! => true } # Here we are telling rspec that fix! method doesn't really exist but keep going
+let (:bike) { double :bike, :broken? => true}
 let (:garage) { Garage.new }
 
-	it "can receive bikes" do 
-		garage.dock(bike)
-		expect(garage.bikes).to include bike
-	end 
-
-	it "can fix a broken bike" do 
-		expect(bike).to receive(:fix!)
-		garage.dock(bike)
+	before do
+		allow(bike).to receive(:fix!)
 	end
 
-	it "can release a fixed bike" do 
+	it "can receive bikes" do
+		garage.dock(bike)
+		expect(garage.bikes).to eq [bike]
+	end
+
+	it "can fix a broken bike" do
+		garage.dock(bike)
+		allow(bike).to receive(:broken?).and_return false
+		expect(bike).to_not be_broken
+	end
+
+	it "can release a fixed bike" do
 		garage.dock(bike)
 		garage.release(bike)
 		expect(garage.bikes).to eq []
